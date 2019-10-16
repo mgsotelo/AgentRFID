@@ -1,4 +1,4 @@
-package rfid;
+package com.mg.rfid.java.rfid;
 
 import com.impinj.octane.*;
 
@@ -30,11 +30,11 @@ public class UtilRFID {
     private ImpinjReader reader;
 
     public String epcRead() throws Exception {
+        //System.out.println(reader.toString());
+        //this.setReader(new ImpinjReader());
+        System.out.println(this.getReader().getAddress() + " = address");
 
-        this.setReader(new ImpinjReader());
-
-        //ImpinjReader reader = new ImpinjReader();
-        getReader().connect(getHostname());
+        this.getReader().connect(getHostname());
 
         Settings settings = getReader().queryDefaultSettings();
         settings.setReaderMode(ReaderMode.AutoSetDenseReader);

@@ -1,5 +1,5 @@
 import com.google.cloud.firestore.Firestore;
-import daos.BaseDao;
+import com.mg.rfid.java.daos.BaseDao;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

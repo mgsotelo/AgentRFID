@@ -1,4 +1,4 @@
-package beans;
+package com.mg.rfid.java.beans;
 
 public class Temporal {
     private String epc;
