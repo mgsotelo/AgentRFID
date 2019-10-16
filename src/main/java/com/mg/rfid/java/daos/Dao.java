@@ -1,4 +1,4 @@
-package daos;
+package com.mg.rfid.java.daos;
 
 import com.google.cloud.firestore.Firestore;
 

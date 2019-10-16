@@ -1,6 +1,6 @@
-package daos;
+package com.mg.rfid.java.daos;
 
-import beans.Equipment;
+import com.mg.rfid.java.beans.Equipment;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 
@@ -20,7 +20,7 @@ public class EquipmentDao implements Dao<Equipment>  {
             equipo.put("EPC",equipment.getEpc());
             equipo.put("creationdate",FieldValue.serverTimestamp());
             ApiFuture<DocumentReference> addedDocRef = ref.add(equipo);
-            System.out.println("Added document with ID: " + addedDocRef.get().getId());
+            System.out.println("[Equipos] Added document with ID: " + addedDocRef.get().getId());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,14 +58,5 @@ public class EquipmentDao implements Dao<Equipment>  {
         }
         return optionalequipment;
 
-        /*
-        Optional<User> optional = findUserById("667290");
-        en este caso el "findUserById" seria este get
-
-        Y luego lo accedo mediante este metodo y si no hay nada, ejecuto una inserción en el dato.
-        optional.ifPresent(user -> {
-            System.out.println("User's name = " + user.getName());
-        })
-        */
     }
 }
