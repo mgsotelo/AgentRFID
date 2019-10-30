@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Class-Path: OctaneSDKJava-3.0.0.0-jar-with-dependencies.jar netty-buff
+ er-4.1.22.Final.jar google-auth-library-credentials-0.11.0.jar google
+ -oauth-client-1.25.0.jar httpcore-4.4.9.jar google-http-client-1.25.0
+ .jar netty-common-4.1.22.Final.jar gax-httpjson-0.47.0.jar httpclient
+ -4.5.5.jar google-api-client-1.25.0.jar proto-google-common-protos-1.
+ 12.0.jar opencensus-contrib-grpc-metrics-0.12.3.jar api-common-1.7.0.
+ jar grpc-stub-1.13.1.jar google-cloud-firestore-0.61.0-beta.jar googl
+ e-http-client-jackson-1.24.1.jar netty-transport-4.1.22.Final.jar goo
+ gle-http-client-gson-1.25.0.jar opencensus-contrib-grpc-util-0.15.0.j
+ ar commons-codec-1.10.jar error_prone_annotations-2.1.2.jar google-cl
+ oud-core-1.43.0.jar google-http-client-appengine-1.24.1.jar joda-time
+ -2.9.2.jar grpc-core-1.13.1.jar guava-20.0.jar proto-google-cloud-fir
+ estore-v1beta1-0.26.0.jar google-cloud-core-http-1.43.0.jar auto-valu
+ e-1.4.jar opencensus-contrib-http-util-0.15.0.jar gax-grpc-1.30.0.jar
+  netty-codec-http-4.1.22.Final.jar google-api-services-storage-v1-rev
+ 135-1.24.1.jar grpc-context-1.13.1.jar protobuf-java-3.6.0.jar grpc-p
+ rotobuf-1.13.1.jar google-cloud-storage-1.43.0.jar proto-google-iam-v
+ 1-0.12.0.jar jsr305-3.0.2.jar netty-handler-4.1.22.Final.jar grpc-net
+ ty-shaded-1.13.1.jar netty-codec-4.1.22.Final.jar gax-1.30.0.jar goog
+ le-api-client-gson-1.25.0.jar j2objc-annotations-1.1.jar threetenbp-1
+ .3.3.jar opencensus-api-0.15.0.jar jackson-core-asl-1.9.11.jar grpc-a
+ uth-1.13.1.jar jackson-core-2.9.6.jar protobuf-java-util-3.6.0.jar go
+ ogle-http-client-jackson2-1.25.0.jar grpc-protobuf-lite-1.13.1.jar fi
+ rebase-admin-6.8.1.jar gson-2.7.jar google-cloud-core-grpc-1.43.0.jar
+  slf4j-api-1.7.25.jar google-auth-library-oauth2-http-0.11.0.jar comm
+ ons-logging-1.2.jar netty-resolver-4.1.22.Final.jar
+Main-Class: com.mg.rfid.java.AgentRFID
+
