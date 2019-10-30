@@ -37,81 +37,32 @@ public class UtilRFID {
         this.getReader().connect(getHostname());
 
         Settings settings = getReader().queryDefaultSettings();
-        settings.setReaderMode(ReaderMode.AutoSetDenseReader);
+        settings.setReaderMode(ReaderMode.MaxMiller);
+
+
 
         AntennaConfigGroup antennas = settings.getAntennas();
         antennas.disableAll();
         antennas.enableById(new short[]{1});
         antennas.getAntenna((short) 1).setIsMaxRxSensitivity(false);
         antennas.getAntenna((short) 1).setIsMaxTxPower(false);
-        antennas.getAntenna((short) 1).setTxPowerinDbm(20.0);
-        antennas.getAntenna((short) 1).setRxSensitivityinDbm(-70);
+        antennas.getAntenna((short) 1).setTxPowerinDbm(10);
+        antennas.getAntenna((short) 1).setRxSensitivityinDbm(-60);
 
         //settings.getAutoStart().setMode(AutoStartMode.Periodic);
         //settings.getAutoStart().setPeriodInMs(10000);
         //settings.getAutoStop().setMode(AutoStopMode.Duration);
-        //settings.getAutoStop().setDurationInMs(5000);
+        //settings.getAutoStop().setDurationInMs(1000);
 
         getReader().setTagReportListener((impinjReader, tagReport) -> {
             List<Tag> tags = tagReport.getTags();
-
+            int i=0;
             for (Tag t : tags) {
-                System.out.print(" EPC: " + t.getEpc().toString());
+                i++;
+                System.out.print(" EPC: " + t.getEpc().toString() + " tagnum = "+ i + "\n" );
                 setEpc(t.getEpc().toString());
-
-                if (getReader().getName() != null) {
-                    System.out.print(" Reader_name: " + getReader().getName());
-                } else {
-                    System.out.print(" Reader_ip: " + getReader().getAddress());
-                }
-
-                if (t.isAntennaPortNumberPresent()) {
-                    System.out.print(" antenna: " + t.getAntennaPortNumber());
-                }
-
-                if (t.isFirstSeenTimePresent()) {
-                    System.out.print(" first: " + t.getFirstSeenTime().ToString());
-                }
-
-                if (t.isLastSeenTimePresent()) {
-                    System.out.print(" last: " + t.getLastSeenTime().ToString());
-                }
-
-                if (t.isSeenCountPresent()) {
-                    System.out.print(" count: " + t.getTagSeenCount());
-                }
-
-                if (t.isRfDopplerFrequencyPresent()) {
-                    System.out.print(" doppler: " + t.getRfDopplerFrequency());
-                }
-
-                if (t.isPeakRssiInDbmPresent()) {
-                    System.out.print(" peak_rssi: " + t.getPeakRssiInDbm());
-                }
-
-                if (t.isChannelInMhzPresent()) {
-                    System.out.print(" chan_MHz: " + t.getChannelInMhz());
-                }
-
-                if (t.isRfPhaseAnglePresent()) {
-                    System.out.print(" phase angle: " + t.getPhaseAngleInRadians());
-                }
-
-                if (t.isFastIdPresent()) {
-                    System.out.print("\n     fast_id: " + t.getTid().toHexString());
-
-                    System.out.print(" model: " +
-                            t.getModelDetails().getModelName());
-
-                    System.out.print(" epcsize: " +
-                            t.getModelDetails().getEpcSizeBits());
-
-                    System.out.print(" usermemsize: " +
-                            t.getModelDetails().getUserMemorySizeBits());
-                }
-
-                System.out.println("");
             }
+
         });
 
         getReader().applySettings(settings);
