@@ -18,7 +18,7 @@ public class TechnicianDao implements Dao<Technician> {
             Map<String, Object> tecnico = new HashMap<>();
             tecnico.put("EPC",technician.getEpc());
             //tecnico.put("creationdate", FieldValue.serverTimestamp());
-            tecnico.put("name",technician.getName());
+            tecnico.put("istechnician",true);
             ApiFuture<DocumentReference> addedDocRef = ref.add(tecnico);
             System.out.println("[Technician] Added document to temporal with ID: " + addedDocRef.get().getId());
 
