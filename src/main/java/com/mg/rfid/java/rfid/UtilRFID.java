@@ -32,7 +32,7 @@ public class UtilRFID {
     public String epcRead() throws Exception {
         //System.out.println(reader.toString());
         //this.setReader(new ImpinjReader());
-        System.out.println(this.getReader().getAddress() + " = address");
+        System.out.println("[UtilRFID] Hostname obtenido. "+this.getReader().getAddress() + " = address");
 
         this.getReader().connect(getHostname());
 

@@ -1,6 +1,6 @@
 package com.mg.rfid.java.beans;
 
-public class Temporal extends Entity {
+public class Entity {
     private String epc;
 
     public String getEpc() {

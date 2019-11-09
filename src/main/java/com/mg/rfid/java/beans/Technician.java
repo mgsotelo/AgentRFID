@@ -1,16 +1,8 @@
 package com.mg.rfid.java.beans;
 
-public class Technician {
-    private String epc;
+public class Technician extends Entity{
     private String name;
 
-    public String getEpc() {
-        return epc;
-    }
-
-    public void setEpc(String epc) {
-        this.epc = epc;
-    }
 
     public String getName() {
         return name;

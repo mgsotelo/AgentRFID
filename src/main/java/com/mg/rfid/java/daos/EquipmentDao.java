@@ -1,5 +1,6 @@
 package com.mg.rfid.java.daos;
 
+import com.mg.rfid.java.beans.Entity;
 import com.mg.rfid.java.beans.Equipment;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
@@ -59,4 +60,20 @@ public class EquipmentDao implements Dao<Equipment>  {
         return optionalequipment;
 
     }
+
+    @Override
+    public void inserttmp(Entity ent, Firestore fdb) {
+        try {
+
+            CollectionReference ref = fdb.collection("temporal");
+            Map<String, Object> equipo = new HashMap<>();
+            equipo.put("EPC",ent.getEpc());
+            ApiFuture<DocumentReference> addedDocRef = ref.add(equipo);
+            System.out.println("[Equipos] Added document to temporal with ID: " + addedDocRef.get().getId());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

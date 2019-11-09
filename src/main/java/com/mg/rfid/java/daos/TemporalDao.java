@@ -1,6 +1,7 @@
 package com.mg.rfid.java.daos;
 
 import com.google.cloud.firestore.*;
+import com.mg.rfid.java.beans.Entity;
 import com.mg.rfid.java.beans.Temporal;
 import com.google.api.core.ApiFuture;
 
@@ -54,5 +55,10 @@ public class TemporalDao implements Dao<Temporal> {
             e.printStackTrace();
         }
         return optionalequipment;
+    }
+
+    @Override
+    public void inserttmp(Entity ent, Firestore fdb) {
+
     }
 }

@@ -2,6 +2,7 @@ package com.mg.rfid.java.daos;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import com.mg.rfid.java.beans.Entity;
 import com.mg.rfid.java.beans.Technician;
 
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class TechnicianDao implements Dao<Technician> {
 
         try {
 
-            CollectionReference ref = db.collection("tecnicos");
+            CollectionReference ref = db.collection("technicians");
             Query query = ref.whereEqualTo("EPC",rfidEPC);
             ApiFuture<QuerySnapshot> future = query.get();
             int allDocsSize = future.get().getDocuments().size();
@@ -57,5 +58,22 @@ public class TechnicianDao implements Dao<Technician> {
             e.printStackTrace();
         }
         return optionalTechnician;
+    }
+
+    @Override
+    public void inserttmp(Entity ent, Firestore fdb) {
+        try {
+
+            CollectionReference ref = fdb.collection("temporal");
+            Map<String, Object> tecnico = new HashMap<>();
+            tecnico.put("EPC",ent.getEpc());
+            //tecnico.put("creationdate", FieldValue.serverTimestamp());
+            tecnico.put("istechnician",true);
+            ApiFuture<DocumentReference> addedDocRef = ref.add(tecnico);
+            System.out.println("[Technician] Added document to temporal with ID: " + addedDocRef.get().getId());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

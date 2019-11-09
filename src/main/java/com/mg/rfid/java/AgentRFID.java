@@ -21,6 +21,8 @@ public class AgentRFID {
 
         //TODO añadir log
 
+
+
         try {
             eqdao = new EquipmentDao();
             tempdao = new TemporalDao();
@@ -55,12 +57,21 @@ public class AgentRFID {
             System.out.println("[AgentRFID] Finalizando ejecución de comandos en vm linux");
             p.destroy();
 
-            myrfid.setHostname(hostname);
             myrfid.setReader(new ImpinjReader());
             //myrfid.setHostname("SpeedwayIoT");
 
             AgentRFID agent = new AgentRFID();
-            agent.run(eqdao, tempdao, techdao, fdb, myrfid);
+
+            while(myrfid.getHostname()==null || myrfid.getHostname()==""){
+                System.out.println("[AgentRFID] Intentando setear hostname. ");
+                myrfid.setHostname(hostname);
+                System.out.println("[AgentRFID] Hostname = " + myrfid.getHostname());
+            }
+
+            if(myrfid.getHostname() != null){
+                agent.run(eqdao, tempdao, techdao, fdb, myrfid);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,15 +103,23 @@ public class AgentRFID {
 
                         } else {
 
-                            Temporal myoldeq = temp.get();
-                            tempdao.insert(myoldeq, fdb);
+                            Equipment myoldeq = currenteq.get();
+                            eqdao.inserttmp(myoldeq, fdb);
 
                         }
 
                     } else if (currentTech.isPresent()) {
 
-                        Technician mytech = currentTech.get();
-                        tempdao.insert(mytech, fdb);
+                        if (temp.isPresent()) {
+
+                            System.out.println(temp.get().getEpc() + " ya se encuentra en tabla temporal");
+
+                        } else {
+
+                            Technician mytech = currentTech.get();
+                            techdao.inserttmp(mytech, fdb);
+
+                        }
 
                     } else {
 
@@ -109,6 +128,8 @@ public class AgentRFID {
                         eqdao.insert(myneweq, fdb);
 
                     }
+
+                    myrfid.setEpc("");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
